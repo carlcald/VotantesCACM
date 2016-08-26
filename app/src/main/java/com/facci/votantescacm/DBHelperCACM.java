@@ -1,5 +1,6 @@
 package com.facci.votantescacm;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -35,6 +36,23 @@ public class DBHelperCACM extends SQLiteOpenHelper {
 
         db.execSQL(String.format("DROP TABLE IF EXISTS %s", TABLA_VOTANTES));
         onCreate(db);
+
+    }
+
+    public boolean IngresarDatos(String nombre,String apellido,String recinto, String ano ){
+
+        SQLiteDatabase db =this.getWritableDatabase();
+        ContentValues contentValues=new ContentValues();
+        contentValues.put(COL_2,nombre);
+        contentValues.put(COL_3,apellido);
+        contentValues.put(COL_4,recinto);
+        contentValues.put(COL_5,ano);
+        long resultado =db.insert(TABLA_VOTANTES,null,contentValues);
+
+        if(resultado == -1)
+            return false;
+        else
+            return true;
 
     }
 }
