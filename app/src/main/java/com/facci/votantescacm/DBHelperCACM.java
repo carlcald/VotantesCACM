@@ -2,6 +2,7 @@ package com.facci.votantescacm;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -54,5 +55,24 @@ public class DBHelperCACM extends SQLiteOpenHelper {
         else
             return true;
 
+    }
+
+    public Cursor MostarTodos(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor re = db.rawQuery(String.format("select * from %s",TABLA_VOTANTES),null);
+        return  re;
+    }
+
+    public boolean modificarRegistro(String id, String nombre, String apellido, String recinto, String ano){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_2,nombre);
+        contentValues.put(COL_3,apellido);
+        contentValues.put(COL_4,recinto);
+        contentValues.put(COL_5,ano);
+        db.update(TABLA_VOTANTES,contentValues,"id = ?",new String[]{id});
+
+        return true;
     }
 }

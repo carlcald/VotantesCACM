@@ -100,4 +100,12 @@
         android:layout_marginTop="24dp"
         android:onClick="insertarClick"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MODIFICAR"
+        android:id="@+id/btnModificar"
+        android:layout_alignBottom="@+id/btnInsertar"
+        android:layout_toEndOf="@+id/textView4" />
+
 </RelativeLayout>
