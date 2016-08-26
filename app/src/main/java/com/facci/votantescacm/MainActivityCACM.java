@@ -34,7 +34,9 @@ public class MainActivityCACM extends AppCompatActivity {
 
         boolean estado = dbSQLITE.IngresarDatos(txtNombre.getText().toString(), txtApellido.getText().toString(), txtRecinto.getText().toString(), txtAno.getText().toString());
 
-        if (estaInsertado == true)
+        if (estado)
             Toast.makeText(MainActivityCACM.this,"Datos Ingresados correctamente",Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(MainActivityCACM.this,"Error de Ingreso",Toast.LENGTH_SHORT).show();
     }
 }
