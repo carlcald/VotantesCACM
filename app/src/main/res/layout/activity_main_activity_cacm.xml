@@ -108,4 +108,21 @@
         android:layout_alignBottom="@+id/btnInsertar"
         android:layout_toEndOf="@+id/textView4" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VER TODOS"
+        android:id="@+id/btnVerTodos"
+        android:layout_below="@+id/btnInsertar"
+        android:layout_alignStart="@+id/btnInsertar"
+        android:onClick="verTodosClick"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ELIMINAR"
+        android:id="@+id/btnEliminar"
+        android:layout_alignBottom="@+id/btnVerTodos"
+        android:layout_alignStart="@+id/btnModificar" />
+
 </RelativeLayout>
