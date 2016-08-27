@@ -58,5 +58,4 @@ public class MainActivityCACM extends AppCompatActivity {
             buffer.append("Año nacimiento : " + re.getInt(4) + "\n\n");
         }
     }
-
 }
