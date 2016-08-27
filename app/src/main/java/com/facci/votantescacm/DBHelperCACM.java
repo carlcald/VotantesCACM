@@ -77,4 +77,10 @@ public class DBHelperCACM extends SQLiteOpenHelper {
 
         return true;
     }
+
+    public Integer eliminarRegistro (String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLA_VOTANTES,"id = ?",new String[]{id});
+    }
 }
+

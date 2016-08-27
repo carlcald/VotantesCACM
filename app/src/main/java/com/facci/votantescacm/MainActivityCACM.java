@@ -89,4 +89,17 @@ public class MainActivityCACM extends AppCompatActivity {
             Toast.makeText(MainActivityCACM.this,"No se pudo actualizar el registro",Toast.LENGTH_SHORT).show();
         }
     }
+    public void eliminarRegistroClick(View v) {
+
+        txtID = (EditText) findViewById(R.id.txtID);
+
+        Integer registrosEliminados = dbSQLITE.eliminarRegistro(txtID.getText().toString());
+
+        if(registrosEliminados > 0){
+            Toast.makeText(MainActivityCACM.this,"Registro(s) Eliminados(s)",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(MainActivityCACM.this,"Error: Registro no eliminado",Toast.LENGTH_SHORT).show();
+        }
+    }
 }
