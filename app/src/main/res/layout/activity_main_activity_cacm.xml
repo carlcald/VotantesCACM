@@ -106,7 +106,8 @@
         android:text="MODIFICAR"
         android:id="@+id/btnModificar"
         android:layout_alignBottom="@+id/btnInsertar"
-        android:layout_toEndOf="@+id/textView4" />
+        android:layout_toEndOf="@+id/textView4"
+        android:onClick="modificarRegistroClick"/>
 
     <Button
         android:layout_width="wrap_content"

@@ -3,6 +3,7 @@ package com.facci.votantescacm;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +17,7 @@ public class MainActivityCACM extends AppCompatActivity {
 
     EditText txtID, txtNombre,txtApellido,txtRecinto,txtAno;
 
-    Button btnInsertar;
+    Button btnInsertar, btnModificar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +29,8 @@ public class MainActivityCACM extends AppCompatActivity {
     }
 
     public void insertarClick (View v){
-        txtNombre = (EditText) findViewById(R.id.txtNombre);
         txtID = (EditText) findViewById(R.id.txtID);
+        txtNombre = (EditText) findViewById(R.id.txtNombre);
         txtApellido = (EditText) findViewById(R.id.txtApellido);
         txtRecinto = (EditText) findViewById(R.id.txtRecintoElectoral);
         txtAno = (EditText) findViewById(R.id.txtAnoNacimiento);
@@ -46,6 +47,7 @@ public class MainActivityCACM extends AppCompatActivity {
     {
         Cursor re = dbSQLITE.MostarTodos();
         if (re.getCount()==0){
+            mostrarMensaje("Error", "No se encontraron datos ingresados");
             return;
         }
         StringBuffer buffer = new StringBuffer();
@@ -56,6 +58,35 @@ public class MainActivityCACM extends AppCompatActivity {
             buffer.append("Apellido : " + re.getString(2) + "\n");
             buffer.append("Recinto : " + re.getString(3) + "\n");
             buffer.append("Año nacimiento : " + re.getInt(4) + "\n\n");
+        }
+
+        mostrarMensaje("Registros", buffer.toString());
+    }
+
+    public void mostrarMensaje(String titulo, String Mensaje){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(titulo);
+        builder.setMessage(Mensaje);
+        builder.show();
+    }
+
+    public void modificarRegistroClick(View v){
+
+        txtID = (EditText) findViewById(R.id.txtID);
+        txtNombre = (EditText) findViewById(R.id.txtNombre);
+        txtApellido = (EditText) findViewById(R.id.txtApellido);
+        txtRecinto = (EditText) findViewById(R.id.txtRecintoElectoral);
+        txtAno = (EditText) findViewById(R.id.txtAnoNacimiento);
+
+        boolean estaActualizado = dbSQLITE.modificarRegistro(txtID.getText().toString(),txtNombre.getText().toString(), txtApellido.getText().toString(), txtRecinto.getText().toString(), txtAno.getText().toString());
+
+        if (estaActualizado == true){
+            Toast.makeText(MainActivityCACM.this,"Registro Actualizado",Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(MainActivityCACM.this,"No se pudo actualizar el registro",Toast.LENGTH_SHORT).show();
         }
     }
 }
